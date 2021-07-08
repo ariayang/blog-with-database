@@ -1,0 +1,22 @@
+<%- include('partials/header'); -%>
+
+<h1>Home</h1>
+
+<p>
+    <%- startingContentEjs %>
+</p>
+
+<div>
+    <% postsEjs.forEach(function(post) { %>
+        
+        <h1>
+            <%=   post.title %>
+        </h1>
+        <p>
+            <%=   post.content %>
+        </p>
+        <%});%>
+    </div>
+
+
+<%- include('partials/footer'); -%>
