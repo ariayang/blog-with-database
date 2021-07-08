@@ -45,14 +45,15 @@ app.get("/posts/:postName", function(req, res){
   const checkTitleResults = checkTitle.checkTitle(title, posts);
   const checkTitleResult = checkTitleResults[0];
   //console.log(checkTitleResult);
+  //console.log(res);
   if (checkTitleResult) {
-    console.log("Find the title a match: " + title);
+    //console.log("Find the title a match: " + title);
+    //title = checkTitle.formatTitle(title);
     res.render("post", {postTitleEjs: posts[checkTitleResults[1]].title, postContentEjs: posts[checkTitleResults[1]].content});
   } else {
-    console.log("Cannot find the title: " + title);
+    console.log("Cannot find the title: " + title); //TODO: will need a failure page
   }
 
-  //res.render("/posts/post" + req.params.postID, {postEjs:posts[].postID});
 });
 
 app.post("/compose", function (req, res) {
