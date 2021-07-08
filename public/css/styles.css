@@ -37,3 +37,24 @@
 .publish-button {
     margin-top: 15px;
 }
+
+div {
+    width: 100%; 
+  }
+  
+  div.autoShowHide {
+    white-space: nowrap; 
+    width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  div.autoShowHide:hover {
+    white-space: normal; 
+    overflow: visible;
+    width: 100%; 
+  }
+
+  .long-text {
+    display: none;
+  }

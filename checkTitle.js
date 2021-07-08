@@ -1,4 +1,4 @@
-
+var postIndex = undefined;
 
 module.exports.checkTitle =
 
@@ -17,15 +17,16 @@ function (title, posts) {
         // }
         
         if (postTitleLowerCase.includes(title)) {
-            return true;
+            postIndex = i;
+            return [true, i];
         } else if (title.includes('-')) {
             title = (title.split('-')).join(' ');
             if (postTitleLowerCase.includes(title)) {
-                return true;
+                return [true, i];
             }
         }
     }
-    return false;
+    return [false, undefined];
   }
 
 

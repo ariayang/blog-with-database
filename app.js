@@ -20,6 +20,7 @@ app.use(express.static("public"));
 const posts=[];
 
 app.get("/", function(req, res){
+
   res.render('home', {
     startingContentEjs: homeStartingContent, 
     postsEjs: posts
@@ -41,14 +42,16 @@ app.get("/compose", function(req, res){
 
 app.get("/posts/:postName", function(req, res){
   let title = req.params.postName;
-  const checkTitleResult = checkTitle.checkTitle(title, posts)
+  const checkTitleResults = checkTitle.checkTitle(title, posts);
+  const checkTitleResult = checkTitleResults[0];
   //console.log(checkTitleResult);
   if (checkTitleResult) {
     console.log("Find the title a match: " + title);
+    res.render("post", {postTitleEjs: posts[checkTitleResults[1]].title, postContentEjs: posts[checkTitleResults[1]].content});
   } else {
     console.log("Cannot find the title: " + title);
   }
-  res.redirect("/");
+
   //res.render("/posts/post" + req.params.postID, {postEjs:posts[].postID});
 });
 
@@ -64,11 +67,8 @@ app.post("/compose", function (req, res) {
 
 
 
-
-
-
-
-
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
+
+
