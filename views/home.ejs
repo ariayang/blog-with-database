@@ -8,15 +8,37 @@
 
 <div>
     <% postsEjs.forEach(function(post) { %>
-        
+                <!--<% //console.log("post within homepage is: " + post);  %> -->
+                <!-- <% //console.log("post title is: " + post.title);  %>  Day 1 -->
         <h1>
             <%=   post.title %>
         </h1>
+       
         <p>
-            <%=   post.content %>
+            <% let text = post.content; %>
+            <% let char_limit = 150; %>
+           
+                <%  if (post.content.length > char_limit) { %>
+                <div>
+                    <span class="short-text"> <%= text.substr(0, char_limit) %> </span>
+                    <span class="long-text"> <%= text.substr(char_limit) %> </span>
+                    <span class="text-dots">...</span>
+                    <!-- % let title = ""; % -->
+                    <!--% if ((post.title).includes(' ')) %> -->
+                    <!--% { title = (post.title).split(' ').join('-'); } %>-->
+                    <% let url = "/posts/" + post.title; %>
+                    <% url = url.replace(" ", "%20"); %>
+                     <a href = "/posts/<%=post._id%>">
+                        <span class="show-more-button" data-more="0">Read More</span></a>
+                </div>
+                <%} else {%>
+                    <%=   post.content %>
+                <%}%>
         </p>
-        <%});%>
-    </div>
+
+    <%});%>
+</div>
+
 
 
 <%- include('partials/footer'); -%>
